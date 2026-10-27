@@ -1,0 +1,44 @@
+[package]
+name = "restful_booker_automation"
+version = "0.1.0"
+edition = "2021"
+description = "Production-grade Rust API automation framework for Restful Booker"
+authors = ["Sandesh S. Dalvi"]
+license = "MIT"
+repository = "https://github.com/Sandesh-S-Dalvi/restful_booker_automation"
+readme = "README.md"
+keywords = ["api", "automation", "testing", "restful-booker", "rust"]
+categories = ["development-tools", "testing"]
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json", "gzip", "deflate"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+tokio = { version = "1", features = ["full"] }
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+chrono = { version = "0.4", features = ["serde"] }
+clap = { version = "4", features = ["derive"] }
+uuid = { version = "1", features = ["v4", "serde"] }
+html-escape = "0.2"
+regex = "1.10"
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full", "test-util"] }
+pretty_assertions = "1.4"
+rstest = "0.21"
+
+[[bin]]
+name = "booker-cli"
+path = "src/main.rs"
+
+[lib]
+name = "restful_booker_automation"
+path = "src/lib.rs"
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = 3
